@@ -1,0 +1,2591 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Moon&#39;s Despair - omg cookie tine with Hiyano and Nico</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="882644699389780058.html_Files/18e39c71af3ef85237037e7f10d4c621-D948E.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Moon&#39;s Despair</div>
+        <div class="preamble__entry">kitchens / omg cookie tine with Hiyano and Nico</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 15:14:55Z</span>
+
+            <div class="chatlog__message " data-message-id="882644701214289922" id="message-882644701214289922" title="Message sent: 2021-09-01 15:14:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;And we are here!&quot; The spearwoman shouted as she entered. &quot;Can you get out two baking trays and a big mixing bowl?&quot; They started getting out the ingredients.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882644747825602590" id="message-882644747825602590" title="Message sent: 2021-09-01 15:15:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Changed the channel name.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 15:27:44Z</span>
+
+            <div class="chatlog__message " data-message-id="882647926483075142" id="message-882647926483075142" title="Message sent: 2021-09-01 15:27:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico He enters and went to grab the bowl and gave it to her. “Here you go.” He said handing it to her</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 17:02:16Z</span>
+
+            <div class="chatlog__message " data-message-id="882671716969627648" id="message-882671716969627648" title="Message sent: 2021-09-01 17:02:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Thanks! Can you put it all on the counter?&quot; They requested, setting it there as well. Hiyano then preheated the oven.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 18:26:22Z</span>
+
+            <div class="chatlog__message " data-message-id="882692882329395251" id="message-882692882329395251" title="Message sent: 2021-09-01 18:26:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico He quickly did what she said.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 19:33:20Z</span>
+
+            <div class="chatlog__message " data-message-id="882709735864950804" id="message-882709735864950804" title="Message sent: 2021-09-01 19:33:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Is there anything else you need?” He asked</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 19:52:28Z</span>
+
+            <div class="chatlog__message " data-message-id="882714549046886401" id="message-882714549046886401" title="Message sent: 2021-09-01 19:52:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">HF: &quot;Uhh.. The chocolate chips! They&#39;re in the pantry!&quot; Hiyano started measuring the ingredients.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 19:55:49Z</span>
+
+            <div class="chatlog__message " data-message-id="882715393041526814" id="message-882715393041526814" title="Message sent: 2021-09-01 19:55:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Yes ma’am.” He said as he started searching for the chocolate chips. After a while he found them and placed the bag of chocolate chips on the counter.</span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-09-01 20:18:42Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 20:18:31Z</span>
+
+            <div class="chatlog__message " data-message-id="882721104504979517" id="message-882721104504979517" title="Message sent: 2021-09-01 20:18:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico as he was moving around getting things ready he felt something behind him. He turned around and noticed that he just grew a tail and panicked. “OH MY GOSH!!!!!!! WHAT THE HECK!!!!!!!!” He yelled in fear.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882722070612545556" id="message-882722070612545556" title="Message sent: 2021-09-01 20:22:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico He quickly grabbed a knife and made a small hole in the back of his pants in the upper area so that it may come out.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 20:38:23Z</span>
+
+            <div class="chatlog__message " data-message-id="882726103729459250" id="message-882726103729459250" title="Message sent: 2021-09-01 20:38:23Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">// <span class="mention" title="Lavender Rock Candy#2053">@Alirs || H̶i̶y̶a̶n̶o̶</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 21:29:30Z</span>
+
+            <div class="chatlog__message " data-message-id="882738968553205842" id="message-882738968553205842" title="Message sent: 2021-09-01 21:29:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | Hiyano shouted a bunch of curses before following Nico&#39;s example. &quot;... Now I&#39;m part cat girl! Meow!&quot; She balled her hand as if it were a paw. &quot;.. Anyways.&quot; They then poured the ingredients inside one of the bowls. &quot;Hey Nico, can you stir this while I measure the rest of the stuff?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 21:34:49Z</span>
+
+            <div class="chatlog__message " data-message-id="882740308029358081" id="message-882740308029358081" title="Message sent: 2021-09-01 21:34:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Sure” He said. He first put on gloves so that cat hair won’t get in the bowl and started mixing.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882740369886957628" id="message-882740369886957628" title="Message sent: 2021-09-01 21:35:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//Say what is Hiyano’s pronouns?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 22:02:03Z</span>
+
+            <div class="chatlog__message " data-message-id="882747158493806642" id="message-882747158493806642" title="Message sent: 2021-09-01 22:02:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Alright, thanks!&quot; They measured and added in the ingredients into the bowl and started greasing the pans. &quot;Err.. Do you bake or cook often by the way?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882747191859490846" id="message-882747191859490846" title="Message sent: 2021-09-01 22:02:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She/They!! //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 22:03:34Z</span>
+
+            <div class="chatlog__message " data-message-id="882747541765095464" id="message-882747541765095464" title="Message sent: 2021-09-01 22:03:34Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//Ok thanks</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882747733285404712" id="message-882747733285404712" title="Message sent: 2021-09-01 22:04:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Sometimes. I can cook some things.” He said as he kept on stirring.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 22:17:57Z</span>
+
+            <div class="chatlog__message " data-message-id="882751160577032234" id="message-882751160577032234" title="Message sent: 2021-09-01 22:17:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Ooh? Like what?&quot; Hiyano set the pans next to Nico and looked around for the scooper. &quot;Steak, by chance?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 22:19:06Z</span>
+
+            <div class="chatlog__message " data-message-id="882751448323084298" id="message-882751448323084298" title="Message sent: 2021-09-01 22:19:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Well I make a lot of Mexican food. Like enchiladas and pan dulce. I made a lot of delicious Mexican food.” He explained</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 22:22:11Z</span>
+
+            <div class="chatlog__message " data-message-id="882752225460494346" id="message-882752225460494346" title="Message sent: 2021-09-01 22:22:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> |  &quot;Oh okay! Is that like milk bread? Wait no, that&#39;s leche.. Bread sweet? Sweet bread?&quot; She found it! Doing a small victory pose, Hiyano then made her way back to Nico.</span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-09-01 22:23:48Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 23:03:10Z</span>
+
+            <div class="chatlog__message " data-message-id="882762540604600320" id="message-882762540604600320" title="Message sent: 2021-09-01 23:03:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Yeah exactly like that.” He said, his tail moving side to side because he was happy.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 23:08:57Z</span>
+
+            <div class="chatlog__message " data-message-id="882763995663204382" id="message-882763995663204382" title="Message sent: 2021-09-01 23:08:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Hm! Okay!&quot; Hiyano&#39;s tail was low to the ground.. Hm. &quot;Oh and tell me when you&#39;re done mixing, alright?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 23:29:57Z</span>
+
+            <div class="chatlog__message " data-message-id="882769278837850183" id="message-882769278837850183" title="Message sent: 2021-09-01 23:29:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Say what do you usually cook?” He asked curiously</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 23:48:06Z</span>
+
+            <div class="chatlog__message " data-message-id="882773849920376912" id="message-882773849920376912" title="Message sent: 2021-09-01 23:48:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Uhh just cookies, usually.&quot; They leaned on the counter, still watching Nico stir. &quot;Oh! And eggs! Can I try some of the pan dulce later?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 23:48:41Z</span>
+
+            <div class="chatlog__message " data-message-id="882773993927614476" id="message-882773993927614476" title="Message sent: 2021-09-01 23:48:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Yeah I can make some when we’re done.” He said</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-01 23:58:43Z</span>
+
+            <div class="chatlog__message " data-message-id="882776521692033094" id="message-882776521692033094" title="Message sent: 2021-09-01 23:58:43Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Alright! Just text me when you make &#39;em and I&#39;ll run straight over!&quot; Hiyano spoke with a grin.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 00:04:37Z</span>
+
+            <div class="chatlog__message " data-message-id="882778005590659112" id="message-882778005590659112" title="Message sent: 2021-09-02 00:04:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico He smiled and finished stirring. “Ok I finished stirring.”</span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-09-02 00:16:21Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 00:44:49Z</span>
+
+            <div class="chatlog__message " data-message-id="882788120775524423" id="message-882788120775524423" title="Message sent: 2021-09-02 00:44:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Ooh okay!&quot; Hiyano handed a scoop to Nico and started scooping with theirs. &quot;Uhh, there you go.. Does your sister cook as well?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 00:46:31Z</span>
+
+            <div class="chatlog__message " data-message-id="882788549664063578" id="message-882788549664063578" title="Message sent: 2021-09-02 00:46:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “She cooks ok. She learns how to cook from her husband.” He explained as he started scooping</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 00:55:31Z</span>
+
+            <div class="chatlog__message " data-message-id="882790815506780200" id="message-882790815506780200" title="Message sent: 2021-09-02 00:55:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">HF: &quot;Oh really? I didn&#39;t know that she was married!&quot; The tail was still low to the ground, but also twitching at the end. &quot;Can I ask how many years?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 01:08:55Z</span>
+
+            <div class="chatlog__message " data-message-id="882794187467141150" id="message-882794187467141150" title="Message sent: 2021-09-02 01:08:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “She has been married for a year. She gave birth toy nephew a year ago.” He said remembering that day. “I remembered I was staying at her house so that I can be able to help her and my brother in law out with my nephew. His name is Luis.” He explained as he finished scooping</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 01:12:42Z</span>
+
+            <div class="chatlog__message " data-message-id="882795137648971846" id="message-882795137648971846" title="Message sent: 2021-09-02 01:12:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Awe, okay!&quot; The tail moved straight up. &quot;Err.. Wanna play like, would you rather or something?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 01:55:33Z</span>
+
+            <div class="chatlog__message " data-message-id="882805920554446859" id="message-882805920554446859" title="Message sent: 2021-09-02 01:55:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Sure” he said as he placed the pan of cookies in the oven so it could cook</span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-09-02 01:55:42Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 02:13:37Z</span>
+
+            <div class="chatlog__message " data-message-id="882810467750391808" id="message-882810467750391808" title="Message sent: 2021-09-02 02:13:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//Hey I’m going to bed can we continue this tomorrow?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 02:17:39Z</span>
+
+            <div class="chatlog__message " data-message-id="882811481840828417" id="message-882811481840828417" title="Message sent: 2021-09-02 02:17:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Mhm! Sure! //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 13:07:07Z</span>
+
+            <div class="chatlog__message " data-message-id="882974926708039743" id="message-882974926708039743" title="Message sent: 2021-09-02 13:07:07Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//Good morning I’m back</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 13:07:16Z</span>
+
+            <div class="chatlog__message " data-message-id="882974966751051816" id="message-882974966751051816" title="Message sent: 2021-09-02 13:07:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Morning! //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882975655267041290" id="message-882975655267041290" title="Message sent: 2021-09-02 13:10:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Alright! I&#39;ll go first so..&quot; They paused for a moment to think. &quot;Would you rather talk to animals or speak all languages?&quot;
+
+... Hiyano sort of just watched the beans grow. Kinda touching it too.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 15:04:40Z</span>
+
+            <div class="chatlog__message " data-message-id="883004508446294036" id="message-883004508446294036" title="Message sent: 2021-09-02 15:04:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Hmmmm. I would rather perfer to speak all languages to communicate with others better.” He explained as he starts working on making pan dulce. “Would you rather hang out with someone famous for a day or hangout with someone rich for a day?” He asked</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 15:08:40Z</span>
+
+            <div class="chatlog__message " data-message-id="883005517629370398" id="message-883005517629370398" title="Message sent: 2021-09-02 15:08:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Hm! Alright then!&quot; Hiyano put the cookies into the oven. &quot;Err... Maybe famous? Would you rather teleport or fly?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 15:18:22Z</span>
+
+            <div class="chatlog__message " data-message-id="883007957401493585" id="message-883007957401493585" title="Message sent: 2021-09-02 15:18:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Teleport. It’s much quicker.” He explained as he got the ingredients for pan dulce and started to make some as he wait for the cookies to be done.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="883008277888270346" id="message-883008277888270346" title="Message sent: 2021-09-02 15:19:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hmmm…..Would you rather date your friend or date some good looking person you just met.” He asked</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 15:25:34Z</span>
+
+            <div class="chatlog__message " data-message-id="883009768573243435" id="message-883009768573243435" title="Message sent: 2021-09-02 15:25:34Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Ooh yeah that makes sense..&quot; She set up the timer. &quot;Err.. Date my friend. Strangers are scary.. Would you rather have a cat or a dog? Oh, and can I help?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 15:28:38Z</span>
+
+            <div class="chatlog__message " data-message-id="883010539100467251" id="message-883010539100467251" title="Message sent: 2021-09-02 15:28:38Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “I would choose a cat. They can clean themselves. Also yes, can you pass me the vanilla extract?” He asked as he put the ingredients together</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 15:31:55Z</span>
+
+            <div class="chatlog__message " data-message-id="883011368721219625" id="message-883011368721219625" title="Message sent: 2021-09-02 15:31:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Ooh okay! I&#39;d pick them too!&quot; They did as told and set it on the counter. &quot;Here you go, Nico! Anything else?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="883011423251341422" id="message-883011423251341422" title="Message sent: 2021-09-02 15:32:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aaa gonna be afk for like an hour or two-//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 15:32:19Z</span>
+
+            <div class="chatlog__message " data-message-id="883011469707452446" id="message-883011469707452446" title="Message sent: 2021-09-02 15:32:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//It’s ok I’ll wait</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="heart">
+                                <img class="emoji emoji--small" alt="❤️" src="882644699389780058.html_Files/2764-02CD4.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="883012242818334811" id="message-883012242818334811" title="Message sent: 2021-09-02 15:35:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Hmmm… no thanks I got this.” He said as he puts them together. “Oh Hiyano, keep an eye on your cookies so they won’t burn.” He said as he took his pan dulce and puts them in the oven in a pan.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 16:55:00Z</span>
+
+            <div class="chatlog__message " data-message-id="883032274667466774" id="message-883032274667466774" title="Message sent: 2021-09-02 16:55:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Alrighty!&quot; She squated down next to the oven, watching the cookies intently. &quot;Uhh.. Read any books lately?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 17:08:08Z</span>
+
+            <div class="chatlog__message " data-message-id="883035579971936308" id="message-883035579971936308" title="Message sent: 2021-09-02 17:08:08Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Well I’ve been reading manga and light novels.” He said  as he kept an eye on his pan dulces.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 17:21:01Z</span>
+
+            <div class="chatlog__message " data-message-id="883038822361890906" id="message-883038822361890906" title="Message sent: 2021-09-02 17:21:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Mhm? Can I ask what they are?&quot; She reached up and grabbed the timer. She kinda just, held it.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 17:27:40Z</span>
+
+            <div class="chatlog__message " data-message-id="883040498539970661" id="message-883040498539970661" title="Message sent: 2021-09-02 17:27:40Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Well it’s called Danmachi. I’ve been reading that series for a while so that I can be ready once season 4 of the anime comes out.” He explained as he checked the time on the clock</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 17:34:55Z</span>
+
+            <div class="chatlog__message " data-message-id="883042321338359848" id="message-883042321338359848" title="Message sent: 2021-09-02 17:34:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Ooh? I think I actually asked this before aha-&quot; Hiyano had a sheepish grin. &quot;Err.. Did I ask you about your talent yet?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 18:37:28Z</span>
+
+            <div class="chatlog__message " data-message-id="883058061462368286" id="message-883058061462368286" title="Message sent: 2021-09-02 18:37:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Yes you did.” He said smiling as he realized that his pan dulce is almost done</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 19:50:57Z</span>
+
+            <div class="chatlog__message " data-message-id="883076553070747658" id="message-883076553070747658" title="Message sent: 2021-09-02 19:50:57Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Oh oops, aha!&quot; They looked down to the counter. &quot;Hmm.. What&#39;s your favorite number?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 20:15:49Z</span>
+
+            <div class="chatlog__message " data-message-id="883082812054437918" id="message-883082812054437918" title="Message sent: 2021-09-02 20:15:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “2” He answered.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="883084154793783306" id="message-883084154793783306" title="Message sent: 2021-09-02 20:21:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “What’s your favorite number?” He asked</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 21:25:01Z</span>
+
+            <div class="chatlog__message " data-message-id="883100228595613817" id="message-883100228595613817" title="Message sent: 2021-09-02 21:25:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Hm! Okay! Mine is uh..&quot;  She thought for a moment. &quot;.. Twelve. I think. Do you listen to musicals?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 22:35:48Z</span>
+
+            <div class="chatlog__message " data-message-id="883118041330769980" id="message-883118041330769980" title="Message sent: 2021-09-02 22:35:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Yeah I listen to some musicals like Hamilton, The phantom of the opera, and Grease.” He said as he realized his pan dulce is ready. “Yes they’re ready!” He then pulls them out and they look delicious.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="883118110125731892" id="message-883118110125731892" title="Message sent: 2021-09-02 22:36:04Z">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="882644699389780058.html_Files/image0-8AE33.png">
+                                <img class="chatlog__attachment-media" src="882644699389780058.html_Files/image0-8AE33.png" alt="Image attachment" title="Image: image0.png (645.07 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 22:38:12Z</span>
+
+            <div class="chatlog__message " data-message-id="883118643129516102" id="message-883118643129516102" title="Message sent: 2021-09-02 22:38:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | They peeked their head over to the pan dulce. &quot;Oh dang! That was pretty fast! Can I try one?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 22:49:31Z</span>
+
+            <div class="chatlog__message " data-message-id="883121494148923392" id="message-883121494148923392" title="Message sent: 2021-09-02 22:49:31Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Sure! Just let it cool first.” He said</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 22:52:06Z</span>
+
+            <div class="chatlog__message " data-message-id="883122144970698782" id="message-883122144970698782" title="Message sent: 2021-09-02 22:52:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Arrgh okay.&quot; The spearwoman put the timer on the counter and glanced over to the cookies. &quot;Hm.. I think they should be good.. Can you take out some milk, Nico?&quot; They then started to get out the cookie trays.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 23:15:55Z</span>
+
+            <div class="chatlog__message " data-message-id="883128136391335966" id="message-883128136391335966" title="Message sent: 2021-09-02 23:15:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Sure.” He said as he took the milk out and placed it on the counter. He then handed her a pan dulce.”Here you can try them now.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 23:18:04Z</span>
+
+            <div class="chatlog__message " data-message-id="883128677225869432" id="message-883128677225869432" title="Message sent: 2021-09-02 23:18:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Okay, thank you!&quot; She grabbed one of the breads. &quot;Oh! And the cookies gotta cools for like, a hot minute—oh! This is pretty good!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 23:46:42Z</span>
+
+            <div class="chatlog__message " data-message-id="883135884906618890" id="message-883135884906618890" title="Message sent: 2021-09-02 23:46:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Thank you.” He said blushing not used to complements. His tail moving side to side a little quicker than usual</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 23:49:59Z</span>
+
+            <div class="chatlog__message " data-message-id="883136711784296519" id="message-883136711784296519" title="Message sent: 2021-09-02 23:49:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Mhm! No problem!&quot; Hiyano then got out bags for the cookies and started bagging half of them. &quot;Hm.. After I&#39;m done packing these, I&#39;mma head over to my room. Do you mind?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 23:51:22Z</span>
+
+            <div class="chatlog__message " data-message-id="883137059366264852" id="message-883137059366264852" title="Message sent: 2021-09-02 23:51:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Sure. Can I have one cookie first?” He asked. “Also I’ll be taking my pan dulce to my room.” He said as he started packing</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-02 23:52:51Z</span>
+
+            <div class="chatlog__message " data-message-id="883137430390202418" id="message-883137430390202418" title="Message sent: 2021-09-02 23:52:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Oh yeah sure! Feel free!&quot; Aye she&#39;s gonna be here for a hot moment. Feel free to leave.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-03 00:21:49Z</span>
+
+            <div class="chatlog__message " data-message-id="883144721273348178" id="message-883144721273348178" title="Message sent: 2021-09-03 00:21:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Thank you. It tastes really good.” He said as he packed up his pan dulce. “Well I’m gonna go. It was a lot of fun hanging out with you. We should hang out again sometime.” He said as he finished packing</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-03 00:56:48Z</span>
+
+            <div class="chatlog__message " data-message-id="883153524446339093" id="message-883153524446339093" title="Message sent: 2021-09-03 00:56:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | &quot;Mhm! No problem! And yeah!&quot; She flashed a smile to Nico before continuing.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/95159eabe919306a0b97620e988998f4-ACCB1.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nickmeister#7049" data-user-id="606933708338888735" style="color: rgb(241,196,15)">Nickmeister</span>
+
+
+        <span class="chatlog__timestamp">2021-09-03 01:22:15Z</span>
+
+            <div class="chatlog__message " data-message-id="883159931493167194" id="message-883159931493167194" title="Message sent: 2021-09-03 01:22:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nico “Well I’ll see you later. Bye.” He said smiling as he got up with his pan dulce and left. Leaving one so she could eat one.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="heart">
+                                <img class="emoji emoji--small" alt="❤️" src="882644699389780058.html_Files/2764-02CD4.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="882644699389780058.html_Files/4e8dbbfb54b6aa3a77c4c6e311b284d1-582F0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lavender Rock Candy#2053" data-user-id="585484116573552666" style="color: rgb(51,84,28)">Alirs || H̶i̶y̶a̶n̶o̶</span>
+
+
+        <span class="chatlog__timestamp">2021-09-03 02:19:29Z</span>
+
+            <div class="chatlog__message " data-message-id="883174331293769809" id="message-883174331293769809" title="Message sent: 2021-09-03 02:19:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="🔱" title="trident" src="https://twemoji.maxcdn.com/2/svg/1f531.svg"> | lmao uhh done packing, takes bread, <span class="mention">#clara-kyo-hiyano</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 74 message(s)</div>
+</div>
+
+</body>
+
+</html>

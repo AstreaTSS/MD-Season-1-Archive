@@ -1,0 +1,2948 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Moon&#39;s Despair - the-great-jericho</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="904053135264321597.html_Files/18e39c71af3ef85237037e7f10d4c621-D948E.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Moon&#39;s Despair</div>
+        <div class="preamble__entry">(KG) Torture room footage / the-great-jericho</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/752b9ce35efafe6b1de81d35321e5e29-46AFC.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hm?#0000" data-user-id="905578631013728266" style="">Hm?</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:06:10Z</span>
+
+            <div class="chatlog__message " data-message-id="905578631781289996" id="message-905578631781289996" title="Message sent: 2021-11-03 22:06:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>J&#233;richo awakens to darkness, he is blindfolded and tied back to a chair. You can hear movement as you come to your senses</em>
+<span class="mention" title="Crepe#2518">@Crepe || Jericho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:09:05Z</span>
+
+            <div class="chatlog__message " data-message-id="905579363557331015" id="message-905579363557331015" title="Message sent: 2021-11-03 22:09:05Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Gah-...what the....H-hey LET ME OUTTA-&quot; <em>Jericho quickly coughed.</em>
+
+&quot;Gah!? Whatever is this! Jericho has performed such a trick like this but this is not ideal for him! Please let Jericho Jeri-go!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-03 22:09:21Z</span>
+
+            <div class="chatlog__message " data-message-id="905579432599760917" id="message-905579432599760917" title="Message sent: 2021-11-03 22:09:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( I mean he couldn&#39;t be in character the exact second he woke up so tada)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="sparkles">
+                                <img class="emoji emoji--small" alt="✨" src="904053135264321597.html_Files/2728-4239B.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:10:49Z</span>
+
+            <div class="chatlog__message " data-message-id="905579800733839410" id="message-905579800733839410" title="Message sent: 2021-11-03 22:10:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>You can hear some giggling</em>
+<strong>&quot;Oh~ the delusional one welcome to your test! This is to trick dear I don&#39;t do the magic&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:12:16Z</span>
+
+            <div class="chatlog__message " data-message-id="905580165520850944" id="message-905580165520850944" title="Message sent: 2021-11-03 22:12:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahhh hello dear Luna! I do appear to be in a spot of bother! Jericho cannot see! This is no such test condition for Jericho! I would quite enjoy being not tired into such a chair! Besides you do do magic my friend! You make friends disappear!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:22:46Z</span>
+
+            <div class="chatlog__message " data-message-id="905582808808956004" id="message-905582808808956004" title="Message sent: 2021-11-03 22:22:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Well I make the rules here dear! You don&#39;t control it~&quot;</strong>
+<em>She clapped and giggled at the thought</em>
+<strong>&quot;If that&#39;s such special magic you&#39;ve done the same. <em>And they never came back</em>, didn&#39;t she?&quot;</strong></span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-11-03 22:25:48Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:24:46Z</span>
+
+            <div class="chatlog__message " data-message-id="905583313094324285" id="message-905583313094324285" title="Message sent: 2021-11-03 22:24:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;By whatever could you mean dear Luna! I may not control anything but I may ask to be freed! Jericho can do such a trick but he needs some assistance!&quot; <em>he ignored the comment about &#39;she&#39;</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:28:14Z</span>
+
+            <div class="chatlog__message " data-message-id="905584183018147902" id="message-905584183018147902" title="Message sent: 2021-11-03 22:28:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Do you <em>really</em> think I&#39;ll let you go? The fun hasn&#39;t even began!&quot;</strong>
+<em>She laughed again</em>
+<strong>&quot;Neglecting such key words are we? Oh Jericho we don&#39;t forget about <em>Janet</em> do we not?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:32:59Z</span>
+
+            <div class="chatlog__message " data-message-id="905585377878900827" id="message-905585377878900827" title="Message sent: 2021-11-03 22:32:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Why yes actually Jericho was quite hoping you would let me go-&quot;
+
+&quot;...Such a name must not be spoken by such a dirty mouth my friend....For it is a name that only those worthy may say....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:34:49Z</span>
+
+            <div class="chatlog__message " data-message-id="905585839575269456" id="message-905585839575269456" title="Message sent: 2021-11-03 22:34:49Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Worthy of saying?&quot;</strong>
+<em>She scoffed</em>
+<strong>&quot;You&#39;re saying that as if you were <em>innocent</em> I don&#39;t see any innocence in what you did and now you&#39;re alone. It&#39;s quite funny how delusional this is&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:35:58Z</span>
+
+            <div class="chatlog__message " data-message-id="905586132207669269" id="message-905586132207669269" title="Message sent: 2021-11-03 22:35:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahhh Jericho was proven innocent! Legally Jericho has nothing to do with such a crime! Mere malfunction ended such a beautiful life!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905586190810497034" id="message-905586190810497034" title="Message sent: 2021-11-03 22:36:12Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;And I am forever not alone! For she is watching above right now!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:37:48Z</span>
+
+            <div class="chatlog__message " data-message-id="905586591114878997" id="message-905586591114878997" title="Message sent: 2021-11-03 22:37:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Being proven by law doesn&#39;t change the very truth of it&quot;</strong>
+<em>She steps closer with a low voice</em>
+<strong>&quot;You know you did it on purpose dear. You had <em>intent</em>.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:38:33Z</span>
+
+            <div class="chatlog__message " data-message-id="905586781112655883" id="message-905586781112655883" title="Message sent: 2021-11-03 22:38:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;J-Jericho did no such thing my friend! Jericho even wears her hat in her honor! Jericho had no intent or nothing to be convicted of my friend!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:40:32Z</span>
+
+            <div class="chatlog__message " data-message-id="905587278481600563" id="message-905587278481600563" title="Message sent: 2021-11-03 22:40:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She continues to laugh</em>
+<strong>&quot;You need to be told very straight right now that <em>you&#39;re a murderer</em> you know you didn&#39;t want to loose your shot at being the famous one therefore you eliminated competition. It&#39;s nothing to be ashamed of.... Well, that&#39;s debatable&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:41:29Z</span>
+
+            <div class="chatlog__message " data-message-id="905587517150081054" id="message-905587517150081054" title="Message sent: 2021-11-03 22:41:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Jericho laughs with Luna <s>to assert dominance</s> </em> &quot;Ahh but Jericho did no such thing! Tis a mechanical malfunction! Jericho is no murderer for following the script!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905587626512375818" id="message-905587626512375818" title="Message sent: 2021-11-03 22:41:55Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Jericho seems to believe he didn&#39;t actually kill her, just that the mechanism really did fail. Almost like he pushed that memory away</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:44:15Z</span>
+
+            <div class="chatlog__message " data-message-id="905588216034373772" id="message-905588216034373772" title="Message sent: 2021-11-03 22:44:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She sighed <s>nice try.</s></em>
+<strong>&quot;Oh dear.... Should I show you the evidence? I know what you easedropped on... The motives... All the intent that you put on it. We simply need to jog that delusional memory of yours! Bring out the truth from it&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:46:16Z</span>
+
+            <div class="chatlog__message " data-message-id="905588724706988083" id="message-905588724706988083" title="Message sent: 2021-11-03 22:46:16Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahhh Jericho can&#39;t see such evidence!  For he cannot see! Such a shame I know dear Luna. And Jericho heard no such conversation! Perhaps there is no memory to jog and you are simply wrong, quite like your mind hm?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:48:37Z</span>
+
+            <div class="chatlog__message " data-message-id="905589313574670336" id="message-905589313574670336" title="Message sent: 2021-11-03 22:48:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She rolled her eyes and ripped of the blindfold</em>
+<strong>&quot;I&#39;m not a dumbass like you so I suggest you be quiet-&quot;</strong>
+
+<em>... Did you just--</em>
+<em>Did you just insult Luna (again)?</em>
+
+<strong>&quot;.... I have no words for you.&quot;</strong>
+<em>Proceeds to slap face hard</em>
+<em>She starts preparing something to show J&#233;richo after. He can see her every move</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-03 22:50:48Z</span>
+
+            <div class="chatlog__message " data-message-id="905589863359848448" id="message-905589863359848448" title="Message sent: 2021-11-03 22:50:48Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Jericho gets slapped, funnily enough his hat stays on his head</em> 
+
+&quot;Gah- Wow! It has been quite some time since Jericho was hit like that! Perhaps he could slap you in return hm? No? Didn&#39;t think so!&quot;
+
+&quot;Perhaps you may not have words for me but perhaps you will have something Jericho can make sense of hm?&quot; <em>he also looks around the room</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 01:09:00Z</span>
+
+            <div class="chatlog__message " data-message-id="905624642570579978" id="message-905624642570579978" title="Message sent: 2021-11-04 01:09:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Going sleep goodniiiight)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 13:14:06Z</span>
+
+            <div class="chatlog__message " data-message-id="905807120866357268" id="message-905807120866357268" title="Message sent: 2021-11-04 13:14:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(And I’m awake :D <span class="mention" title="4MushroomSoap#1474">@Soapy | Luna~</span> also ping me when you respond so I don’t forget to check pls</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="904053135264321597.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(125,196,230)">Soapy | Luna~</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 16:38:47Z</span>
+
+            <div class="chatlog__message " data-message-id="905858628920152084" id="message-905858628920152084" title="Message sent: 2021-11-04 16:38:47Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(still in school probably be a while</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 19:57:06Z</span>
+
+            <div class="chatlog__message " data-message-id="905908539854323763" id="message-905908539854323763" title="Message sent: 2021-11-04 19:57:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;...&quot;</strong>
+<em>She glared at Jericho before going back to the task at hand. That says a lot and the answer is there</em>
+
+<em>She says nothing more until she comes with a <u>phone</u>. A clip of Jericho easedropping on the conversation which risked his career as an ultimate. The idea he could be dropped from the medias eyes for his sister</em>
+<strong>&quot;Shall I show the end result? You <em>clearly</em> killed her for the fame. Sugar coat it as an accident you did but it doesn&#39;t change the guilt and fact you are a murderer&quot;</strong>
+<em>She sighed</em>
+<strong>&quot;You&#39;re too stuck in your delusion to see it&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(125,196,230)">Soapy | Luna~</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 19:57:14Z</span>
+
+            <div class="chatlog__message " data-message-id="905908570510479410" id="message-905908570510479410" title="Message sent: 2021-11-04 19:57:14Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Crepe#2518">@Crepe || Jericho</span>  <img loading="lazy" class="emoji " alt="👋" title="wave" src="https://twemoji.maxcdn.com/2/svg/1f44b.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:02:30Z</span>
+
+            <div class="chatlog__message " data-message-id="905909896459976754" id="message-905909896459976754" title="Message sent: 2021-11-04 20:02:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahhh that is merely Jericho listening in to the producers! For he is quite happy that his sister is achieving fame! Such a shame such talent is gone!&quot; <em>he seems to have genuinely forgot he didn&#39;t do it</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 20:03:56Z</span>
+
+            <div class="chatlog__message " data-message-id="905910256410964040" id="message-905910256410964040" title="Message sent: 2021-11-04 20:03:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="4MushroomSoap#1474">@Soapy | Luna~</span> sorry, response might be slow. in vc)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="904053135264321597.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:06:35Z</span>
+
+            <div class="chatlog__message " data-message-id="905910922772627476" id="message-905910922772627476" title="Message sent: 2021-11-04 20:06:35Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She sighed</em>
+<strong>&quot;You are not right in the head... What could change that...?&quot;</strong>
+<em>She got another clip up, it was of Jericho brutally stabbing her sister to death</em>
+<strong>&quot;You did that by the way.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(125,196,230)">Soapy | Luna~</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 20:06:39Z</span>
+
+            <div class="chatlog__message " data-message-id="905910941940588584" id="message-905910941940588584" title="Message sent: 2021-11-04 20:06:39Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Crepe#2518">@Crepe || Jericho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:13:04Z</span>
+
+            <div class="chatlog__message " data-message-id="905912558282743808" id="message-905912558282743808" title="Message sent: 2021-11-04 20:13:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Jericho is fully right in the head! And such a video is not true! For that was not for how she met her tragic end...for it was merely a trick gone wrong! A shot to the head my friend!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 20:13:10Z</span>
+
+            <div class="chatlog__message " data-message-id="905912581515014214" id="message-905912581515014214" title="Message sent: 2021-11-04 20:13:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="4MushroomSoap#1474">@Soapy | Luna~</span> woohoo)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905912836323176478" id="message-905912836323176478" title="Message sent: 2021-11-04 20:14:11Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(but yeah cause of death was shot to the head via trap and Jericho remembers how she died due to everyones favorite thing. Being tried for murder!)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:15:32Z</span>
+
+            <div class="chatlog__message " data-message-id="905913175893999636" id="message-905913175893999636" title="Message sent: 2021-11-04 20:15:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji emoji--large" alt="😐" title="neutral_face" src="https://twemoji.maxcdn.com/2/svg/1f610.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905913215731499029" id="message-905913215731499029" title="Message sent: 2021-11-04 20:15:41Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji emoji--large" alt="CatSurprise" title="CatSurprise" src="https://cdn.discordapp.com/emojis/868382906773557269.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905913367791824956" id="message-905913367791824956" title="Message sent: 2021-11-04 20:16:17Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;You&#39;re not okay in the head.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:22:02Z</span>
+
+            <div class="chatlog__message " data-message-id="905914810909229116" id="message-905914810909229116" title="Message sent: 2021-11-04 20:22:02Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahhhh and you are my friend? Tell me how I am less sane than you hm?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 20:22:03Z</span>
+
+            <div class="chatlog__message " data-message-id="905914815279685713" id="message-905914815279685713" title="Message sent: 2021-11-04 20:22:03Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="4MushroomSoap#1474">@Soapy | Luna~</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:27:50Z</span>
+
+            <div class="chatlog__message " data-message-id="905916273823739904" id="message-905916273823739904" title="Message sent: 2021-11-04 20:27:50Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She proceeded to cover the blindfold over Jerichos eyes and walking away can be heard</em>
+<strong>&quot;Oh fuck yeah I am.&quot;</strong>
+<em><s>Glances at pd</s></em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/7a466a760a5cfe4e6b8286a70b92e479-F1829.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="905578631013728266" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:27:51Z</span>
+
+            <div class="chatlog__message " data-message-id="905916276692631613" id="message-905916276692631613" title="Message sent: 2021-11-04 20:27:51Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;Oh is that Jericho there? His sister was so much better when she was alive&quot;</em>
+<em>&quot;Yeah! I really miss Janet, she had so much of a better stage presence than him&quot;</em>
+<em>&quot;I still believe he killed her intentionally, he <u>had</u> too&quot;</em>
+<em>&quot;It&#39;s jealousy dear&quot;</em>
+
+<em>Jericho starts hearing whispers surrounding him, not of Luna&#39;s doing</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(125,196,230)">Soapy | Luna~</span>
+
+
+        <span class="chatlog__timestamp">2021-11-04 20:30:01Z</span>
+
+            <div class="chatlog__message " data-message-id="905916822648418305" id="message-905916822648418305" title="Message sent: 2021-11-04 20:30:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Crepe#2518">@Crepe || Jericho</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:36:24Z</span>
+
+            <div class="chatlog__message " data-message-id="905918427007447040" id="message-905918427007447040" title="Message sent: 2021-11-04 20:36:24Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahh..No dear Janet was a talent but it was Jericho who was the true star hm? J-Jericho didn&#39;t kill her!? It was proven to be a mechanical failure! Jericho had no part in her murder! Jericho has no jealousy for such talent!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/7a466a760a5cfe4e6b8286a70b92e479-F1829.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="905578631013728266" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 20:46:33Z</span>
+
+            <div class="chatlog__message " data-message-id="905920983335063562" id="message-905920983335063562" title="Message sent: 2021-11-04 20:46:33Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The whispers continue....</em>
+
+<em>&quot;I wouldn&#39;t be surprised if that not guilty verdict was a bribe. You know how they can be. Corruption.&quot;</em>
+<em>&quot;There was no justice for Janet. I don&#39;t think she would be resting well knowing the truth. Mistakes can&#39;t happen at such a coincidence!&quot;</em>
+<em>&quot;I can&#39;t believe such papers and people are acting as if nothing happened!&quot;</em>
+<em>&quot;I know I would retire knowing I killed my <u>sister</u> in such a way&quot;</em>
+<em>&quot;See? It was no accident. The courts were biased&quot;</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-04 21:28:20Z</span>
+
+            <div class="chatlog__message " data-message-id="905931497599537202" id="message-905931497599537202" title="Message sent: 2021-11-04 21:28:20Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahh such a verdit was n-not a bribe but the mere truth! No corruption here my whispery friend! Janet is well at rest watching Jericho perform! She is happy Jericho knows it! And Jericho could never retire! For that would be doing her a disservice! He must perform for her honour!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/7a466a760a5cfe4e6b8286a70b92e479-F1829.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="905578631013728266" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 17:37:15Z</span>
+
+            <div class="chatlog__message " data-message-id="906235732241313883" id="message-906235732241313883" title="Message sent: 2021-11-05 17:37:15Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;Jericho must be a terrible brother.  He is so merciless thinking nothing of her sister&quot;</em>
+<em>&quot;Yeah he speaks nothing about his sister and she was such a jewel. We all loved her <u>much</u> more than Jericho. I stopped watching it after Janet was gone..&quot;</em>
+<em>&quot;Same! I couldn&#39;t watch a brocken piece without the whole. He should&#39;ve just quit!&quot;</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 17:47:46Z</span>
+
+            <div class="chatlog__message " data-message-id="906238376703840266" id="message-906238376703840266" title="Message sent: 2021-11-05 17:47:46Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;N-no! Jericho was the greatest of brothers to Janet! He made sure she was a star! Wh-what are these voices good heavens this isn&#39;t good for Jericho be quiet at once! Jericho mentions her all the time! For every show is in her honor! J-Jericho is the star of this sh-show...I...I...I...I could never...quit.....I....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:00:54Z</span>
+
+            <div class="chatlog__message " data-message-id="906241682012504115" id="message-906241682012504115" title="Message sent: 2021-11-05 18:00:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Luna simply smirks</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/7a466a760a5cfe4e6b8286a70b92e479-F1829.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="905578631013728266" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:00:54Z</span>
+
+            <div class="chatlog__message " data-message-id="906241683811893260" id="message-906241683811893260" title="Message sent: 2021-11-05 18:00:54Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;I wonder who brought Jericho into magic?&quot;</em>
+<em>&quot;Oh it was her sister. Jericho must&#39;ve stolen all the spotlight from her. That&#39;s not good of a brother to be that. The person who brought it in their lives becomes the spotlight.&quot;</em>
+<em>&quot;It&#39;s quite <u>selfish</u> don&#39;t you think?&quot;</em>
+<em>&quot;I hope something is dug about him to force him to quit.&quot;</em>
+<em>&quot;I know!&quot;</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:05:37Z</span>
+
+            <div class="chatlog__message " data-message-id="906242869747134504" id="message-906242869747134504" title="Message sent: 2021-11-05 18:05:37Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I-it was indeed Janet who....Brought Jericho into the wonders of magic...she...I was just....Jericho...no great...she made me great....&quot; <em>Jericho tried to think</em> &quot;...Jericho can&#39;t even remember our last name....the show has....been everything to him....but Jericho...still knows that...he didn&#39;t...that...he didn&#39;t....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/7a466a760a5cfe4e6b8286a70b92e479-F1829.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="905578631013728266" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:15:32Z</span>
+
+            <div class="chatlog__message " data-message-id="906245365605482536" id="message-906245365605482536" title="Message sent: 2021-11-05 18:15:32Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;<u>Janet Genova</u>.... The poor soul for having such a brother&quot;</em>
+<em>&quot;I still wonder what great things would&#39;ve happened if she was still here. She could <u>easily</u> outshine Jericho&quot;</em>
+<em>A scoff is heard</em>
+<em>&quot;__That&#39;s if he wouldn&#39;t kill her first&quot;</em>
+<em>&quot;... Good point there. He would, wouldn&#39;t he?&quot;</em>
+<em>&quot;He simply can&#39;t handle being the supporting role&quot;</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:25:30Z</span>
+
+            <div class="chatlog__message " data-message-id="906247873858003044" id="message-906247873858003044" title="Message sent: 2021-11-05 18:25:30Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;G-...Genova...that&#39;s...the surname....How...How could Jeri-...How could I forget....Jericho wasn&#39;t the supporting role...she...she was the ultimate assistant we were both happy....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/7a466a760a5cfe4e6b8286a70b92e479-F1829.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="905578631013728266" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:43:23Z</span>
+
+            <div class="chatlog__message " data-message-id="906252376543998012" id="message-906252376543998012" title="Message sent: 2021-11-05 18:43:23Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The Genova siblings... I wish we could go back to the better days when Janet was still here...&quot;</em>
+<em>&quot;AND when Jericho wasn&#39;t so self absorbed-&quot;</em>
+<em>&quot;That too. Those siblings meant a lot to me one a blue moon ago. I couldn&#39;t give two shits about Jericho now. <strong>Murderer</strong>.&quot;</em>
+<em>&quot;Yeah.. Anyways, shall we go?&quot;</em>
+
+<em>Goodbyes were made and the whispers of &#39;muderer&#39; echoing around the room soon faded</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:46:21Z</span>
+
+            <div class="chatlog__message " data-message-id="906253120147972126" id="message-906253120147972126" title="Message sent: 2021-11-05 18:46:21Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...What...what was the voices...they...what...I to..miss being a part of a duo...but...I have to perform...even if....no....do I have to...?...I..I..Jericho is no murderer....I...I...Be quiet...please....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:49:00Z</span>
+
+            <div class="chatlog__message " data-message-id="906253786727735356" id="message-906253786727735356" title="Message sent: 2021-11-05 18:49:00Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Luna stays silent a bit before clapping the thick tense air away</em>
+<strong>&quot;So~ Jericho! What did I tell you? You <em>killed</em> Janet. I do admit that you being the Genova siblings was much better than &#39;The great Jericho&#39;.&quot;</strong>
+<em>She made a small giggle</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:55:06Z</span>
+
+            <div class="chatlog__message " data-message-id="906255324745433118" id="message-906255324745433118" title="Message sent: 2021-11-05 18:55:06Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;....What was that.....where did those voices come from....and...Is that truly my last name...Genova...?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:56:45Z</span>
+
+            <div class="chatlog__message " data-message-id="906255740484870155" id="message-906255740484870155" title="Message sent: 2021-11-05 18:56:45Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She shrugged</em>
+<strong>&quot;I think you were hearing things dear. <u>The truth</u>. Yes your name is Jericho Genova. Did you seriously forget?&quot;</strong>
+<em><strong>&#39;So delusional... He&#39;s learning...&#39;</strong></em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 18:58:47Z</span>
+
+            <div class="chatlog__message " data-message-id="906256248654164079" id="message-906256248654164079" title="Message sent: 2021-11-05 18:58:47Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I...I was hearing things...?...How did you....it wasn&#39;t the truth...&quot; <em>At this point, part of him is starting to think that he killed her but in his mind he&#39;s repeating &#39;If I say it then it&#39;s the truth...I didn&#39;t do it I didn&#39;t&#39; </em>
+
+&quot;I...I did forget....I...Jericho is....Well....I..the line between Performer and...person....I....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 19:01:26Z</span>
+
+            <div class="chatlog__message " data-message-id="906256915565248592" id="message-906256915565248592" title="Message sent: 2021-11-05 19:01:26Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;I know what &#201;spairia has. You&#39;re a controversial person dear, you&#39;ve forgotten yourself&quot;</strong>
+<em>She speaks with a softer tone and moves closer with what sounds like a chair</em>
+<strong>&quot;Shall we fix this?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 19:04:28Z</span>
+
+            <div class="chatlog__message " data-message-id="906257680069451786" id="message-906257680069451786" title="Message sent: 2021-11-05 19:04:28Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I...I...I...Don&#39;t want to...I&#39;m not broken...Jericho isn&#39;t...I&#39;m not.....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="906258144773161060" id="message-906258144773161060" title="Message sent: 2021-11-05 19:06:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wh-what is...Espairia....and...What are you doing....I...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 19:08:19Z</span>
+
+            <div class="chatlog__message " data-message-id="906258650711097374" id="message-906258650711097374" title="Message sent: 2021-11-05 19:08:19Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She smiles and takes of Jericho&#39;s blindfold</em>
+<strong>&quot;Dear... It&#39;s acceptance it is. The propoganda has gotten to your head too much...&quot;</strong>
+<em>She tilted her head in confusion</em>
+<strong>&quot;Haven&#39;t you forgotten? We all live in &#201;spairia. They gave you your ultimate just like mine. I&#39;m not doing anything~&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 19:11:09Z</span>
+
+            <div class="chatlog__message " data-message-id="906259362597728347" id="message-906259362597728347" title="Message sent: 2021-11-05 19:11:09Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Acceptance...?...But..Why do you need to fix anything....&quot; <em>Jericho seemed to look concerned as he looked at the Luna. Jericho was also...afraid. Gasp</em>
+
+&quot;I...I don&#39;t recall an Espairia.....and...and....What do you m-mean by acceptance...j-just let me go....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-05 19:35:59Z</span>
+
+            <div class="chatlog__message " data-message-id="906265613188612187" id="message-906265613188612187" title="Message sent: 2021-11-05 19:35:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I have to say this is a pretty interesting thing. Also <em>should</em> I know what Espairia is now I&#39;m paranoid I forgot something important)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(125,196,230)">Soapy | Luna~</span>
+
+
+        <span class="chatlog__timestamp">2021-11-05 19:40:42Z</span>
+
+            <div class="chatlog__message " data-message-id="906266797764935701" id="message-906266797764935701" title="Message sent: 2021-11-05 19:40:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(It has been mentioned but minimally</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-05 19:40:58Z</span>
+
+            <div class="chatlog__message " data-message-id="906266864647278632" id="message-906266864647278632" title="Message sent: 2021-11-05 19:40:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(phew im not a 100% dumbass)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="white_check_mark">
+                                <img class="emoji emoji--small" alt="✅" src="904053135264321597.html_Files/2705-75533.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 19:45:58Z</span>
+
+            <div class="chatlog__message " data-message-id="906268125689950298" id="message-906268125689950298" title="Message sent: 2021-11-05 19:45:58Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;I need to fix the delusion you have all been tied into. It isn&#39;t your fault here don&#39;t worry....&quot;</strong>
+<em>She sighed with a smile. Satisfied</em>
+
+<strong>&quot;Maybe you forgot more than I thought... Welp, can&#39;t change that. You need to accept the world isn&#39;t all rainbows and butterflies. <em><u>It&#39;s all your fault I&#39;m here you know.</u></em>.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 19:48:01Z</span>
+
+            <div class="chatlog__message " data-message-id="906268639844503603" id="message-906268639844503603" title="Message sent: 2021-11-05 19:48:01Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I...I know I&#39;m delusional......I...This is the first time I&#39;ve been...out of character for quite some time....and...I...Don&#39;t know how I feel about it....But....you just said it isn&#39;t my fault....and then you said...it was my fault...no I&#39;m confused....I...J-just know that....I&#39;m...me....and...I still don&#39;t know what you plan to do when say say &#39;fix this&#39;....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-05 20:12:10Z</span>
+
+            <div class="chatlog__message " data-message-id="906274718032732170" id="message-906274718032732170" title="Message sent: 2021-11-05 20:12:10Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(also ping me with your next response if you don&#39;t mind)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-05 20:28:29Z</span>
+
+            <div class="chatlog__message " data-message-id="906278825988612187" id="message-906278825988612187" title="Message sent: 2021-11-05 20:28:29Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Jericho would still feel his sisters hat on his head, inside such a hat was the photo of the genova siblings. He wished he could look at it right now</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(125,196,230)">Soapy | Luna~</span>
+
+
+        <span class="chatlog__timestamp">2021-11-05 22:04:56Z</span>
+
+            <div class="chatlog__message " data-message-id="906303097633132544" id="message-906303097633132544" title="Message sent: 2021-11-05 22:04:56Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Kay I&#39;ll soon</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-06 19:45:44Z</span>
+
+            <div class="chatlog__message " data-message-id="906630455456071740" id="message-906630455456071740" title="Message sent: 2021-11-06 19:45:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She claps her hands as she stands, she looks pleased</em>
+<strong>&quot;I&#39;m glad you&#39;re finally disconnecting from the propoganda~ It&#39;s been really affecting you all but you dear Jericho the most&quot;</strong>
+<em>She sighed and stroked down the his fringe</em>
+<strong>&quot;Well some things aren&#39;t your fault, such as the delusion you&#39;ve been placed by your home. The thing that is your fault is the fact <u>You let this happen for so long. You <em>encouraged</em> this problem for <em>so</em> long</u>.&quot;</strong>
+
+<strong>&quot;And how I plan to fix this? I have ideas... And it starts with you~&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-06 19:54:59Z</span>
+
+            <div class="chatlog__message " data-message-id="906632781612863569" id="message-906632781612863569" title="Message sent: 2021-11-06 19:54:59Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I...Of course I did...As the Great Jericho there was no...sadness or...stress...when your whole life is a performance even the bad parts can be seen as...comedy...And....I don&#39;t...like being out of character...Fear isn&#39;t a fun thing to feel again....as for your ideas....I&#39;m....even more nervous to hear them....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-06 20:37:44Z</span>
+
+            <div class="chatlog__message " data-message-id="906643539092451358" id="message-906643539092451358" title="Message sent: 2021-11-06 20:37:44Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;But that is what I&#39;m trying to <em>teach</em> you dear~ You need to learn that despair exists. <em>You need to know how it feels</em>.&quot;</strong>
+<em>She giggled and cupped his chin</em>
+<strong>&quot;You.... Well some of you were meant to die, but I&#39;m meant to give you back into the wrong hands after. So with this despair I teach you, you will be able to do the work for me!&quot;</strong>
+<em><strong>&#39;Well, unless their defence is too strong&#39;</strong></em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/96af9ea787f5626a53d26ab0d6def126-013FA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Great Jericho#0000" data-user-id="905578631013728266" style="">The Great Jericho</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-06 20:40:42Z</span>
+
+            <div class="chatlog__message " data-message-id="906644286873935902" id="message-906644286873935902" title="Message sent: 2021-11-06 20:40:42Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I think I&#39;m already feeling it...this isn&#39;t exactly a fun situation....can I just go now...I hate this....I...I don&#39;t know what I want to do.....I want to go back to the Great Jericho....but I don&#39;t to....&quot;
+
+&quot;What do you mean we were meant to die.....what do you mean by wrong hands....and what work.....I...don&#39;t get any of what you&#39;re saying...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d3c2f82aa21560162899b3aa23dac607-63E74.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄#0000" data-user-id="905578631013728266" style="">L̴̢̉ȕ̶̼n̸̛̈à̶̞ ̵͒͝#̸͛̈́3̸̂͂4̶̂͠3̷̈́͛5̴̲͝3̷͛̃9̴͊̄</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-06 21:26:25Z</span>
+
+            <div class="chatlog__message " data-message-id="906655790629269564" id="message-906655790629269564" title="Message sent: 2021-11-06 21:26:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She laughed</em>
+<strong>&quot;That is how you&#39;re meant to feel right now! Oh you&#39;re doing so well dear. I&#39;m not like <em>him</em> so I won&#39;t do any more~ Just accept it dear, it does you so much good. A balance is never a bad idea either&quot;</strong>
+<em>She moved to stroke his cheek and smiled fondly at Jericho</em>
+
+<strong>&quot;Some things I can&#39;t tell you.... You&#39;ll learn in a better place dear&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/7a466a760a5cfe4e6b8286a70b92e479-F1829.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="905578631013728266" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">2021-11-06 21:26:25Z</span>
+
+            <div class="chatlog__message " data-message-id="906655792470568980" id="message-906655792470568980" title="Message sent: 2021-11-06 21:26:25Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Jericho slowly felt hummed to sleep</em>
+<em><strong>&quot;Now let&#39;s take you back.. Shall we?&quot;</strong></em></span>
+
+                                <span class="chatlog__edited-timestamp" title="2021-11-06 21:26:58Z">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(125,196,230)">Soapy | Luna~</span>
+
+
+        <span class="chatlog__timestamp">2021-11-06 21:27:04Z</span>
+
+            <div class="chatlog__message " data-message-id="906655953603166278" id="message-906655953603166278" title="Message sent: 2021-11-06 21:27:04Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(And you&#39;re done!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="904053135264321597.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(17,243,30)">Crepe || Jericho</span>
+
+
+        <span class="chatlog__timestamp">2021-11-06 21:29:22Z</span>
+
+            <div class="chatlog__message " data-message-id="906656535554437181" id="message-906656535554437181" title="Message sent: 2021-11-06 21:29:22Z">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(ay)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 78 message(s)</div>
+</div>
+
+</body>
+
+</html>
